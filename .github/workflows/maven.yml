@@ -29,3 +29,11 @@ jobs:
         #cache: maven
     - name: Build with Maven
       run: mvn -B package
+
+    - name: Archive Test Reports
+      # Always run even if the build fails
+      if: always()
+      uses: actions/upload-artifact@v4.4.0
+      with:
+        name: test-reports
+        path: target/surefire-reports/

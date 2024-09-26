@@ -9,7 +9,6 @@ class GithubActionsDemoApplicationTests {
 
    @Test
    void contextLoads() {
-      Assertions.assertEquals(5,3);
    }
 
 }
