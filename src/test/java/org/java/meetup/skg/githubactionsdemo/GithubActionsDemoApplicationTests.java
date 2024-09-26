@@ -1,5 +1,6 @@
 package org.java.meetup.skg.githubactionsdemo;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -8,6 +9,7 @@ class GithubActionsDemoApplicationTests {
 
    @Test
    void contextLoads() {
+      Assertions.assertEquals(5,3);
    }
 
 }
