@@ -3,6 +3,9 @@ package org.java.meetup.skg.githubactionsdemo;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+/**
+ * Test change
+ */
 @SpringBootApplication
 public class GithubActionsDemoApplication {
 
