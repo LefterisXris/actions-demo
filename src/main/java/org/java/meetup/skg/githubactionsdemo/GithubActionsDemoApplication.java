@@ -10,6 +10,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class GithubActionsDemoApplication {
 
    public static void main(String[] args) {
+      // dummy change
       SpringApplication.run(GithubActionsDemoApplication.class, args);
    }
 
