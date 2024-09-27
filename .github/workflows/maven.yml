@@ -153,12 +153,12 @@ jobs:
       # Build Image. TODO: make sure you change the image name properly (username should your user)
       # Check more here: https://docs.github.com/en/actions/use-cases-and-examples/publishing-packages/publishing-docker-images#publishing-images-to-github-packages
       - name: Build Docker image
-        run: docker build -t ghcr.io/lefterisxris/gh_actions:latest .
+        run: docker build -t ghcr.io/lefterisxris/actions-demo:latest .
 
       # Push Docker images to GitHub Container Registry. TODO: make sure you change the image name properly (username should your user)
       # Check more here: https://docs.github.com/en/actions/use-cases-and-examples/publishing-packages/publishing-docker-images#publishing-images-to-github-packages
       - name: Push Docker image to GHCR
-        run: docker push ghcr.io/lefterisxris/gh_actions:latest
+        run: docker push ghcr.io/lefterisxris/actions-demo:latest
 
       ############################
       ######## Deployment ########
