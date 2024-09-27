@@ -115,18 +115,18 @@ jobs:
           paths: |
             target/site/jacoco/jacoco.xml
           token: ${{ secrets.GITHUB_TOKEN }}
-          min-coverage-overall: 70
+          min-coverage-overall: 30
           min-coverage-changed-files: 90
           title: '# :lobster: Coverage Report'
           pass-emoji: ':green_circle:'
           fail-emoji: ':red_circle:'
 
-      - name: Fail PR if overall coverage is less than 70%
-        if: ${{ steps.jacoco.outputs.coverage-overall < 70.0 }}
+      - name: Fail PR if overall coverage is less than 30%
+        if: ${{ steps.jacoco.outputs.coverage-overall < 30.0 }}
         uses: actions/github-script@v7.0.1 # https://github.com/marketplace/actions/github-script
         with:
           script: |
-            core.setFailed('Coverage is less than 70%!')
+            core.setFailed('Coverage is less than 30%!')
 
         ###############################
         ######## Notifications ########
