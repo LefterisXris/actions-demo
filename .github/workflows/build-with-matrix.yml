@@ -1,0 +1,53 @@
+# This workflow will build a Java project with Maven, and cache/restore any dependencies to improve the workflow execution time
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-java-with-maven
+
+# This workflow uses actions that are not certified by GitHub.
+# They are provided by a third-party and are governed by
+# separate terms of service, privacy policy, and support
+# documentation.
+
+name: Java CI with Maven (Matrix for JDK and OS)
+
+# This Workflow can be triggered manually from GitHub UI. Of course, it can set to run on push, pull_request etc
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+
+    # Strategy gives the ability to declare set of variables and based on them, parallel runs will start using
+    # all the combinations of the variables in matrix.
+    strategy:
+      matrix:
+        java-version: [17, 19]
+        os: [windows-latest, ubuntu-latest]
+
+    runs-on: ${{ matrix.os }} # That means we will have at least 2 runs. One on windows-latest and one on ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4.1.7 # https://github.com/marketplace/actions/checkout
+
+      - name: Set up JDK ${{ matrix.java-version }}
+        uses: actions/setup-java@v4.4.0 # https://github.com/marketplace/actions/setup-java-jdk
+        with:
+          java-version: ${{ matrix.java-version }}
+          distribution: 'temurin'
+          cache: maven
+
+      - name: Build with Maven
+        run: mvn -B package
+
+      - name: Archive Test Reports
+        # Always run even if the build fails. Can be set to fail only
+        if: always()
+        uses: actions/upload-artifact@v4.4.0 # https://github.com/marketplace/actions/upload-a-build-artifact
+        with:
+          name: ${{ matrix.os }}_jdk${{ matrix.java-version }}_test-reports
+          path: target/surefire-reports/
+
+      - name: Archive Code Coverage Report
+        if: always()
+        uses: actions/upload-artifact@v4.4.0 # https://github.com/marketplace/actions/upload-a-build-artifact
+        with:
+          name: ${{ matrix.os }}_jdk${{ matrix.java-version }}_coverage-report
+          path: target/site/jacoco/
