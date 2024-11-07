@@ -1,7 +1,8 @@
 name: GitHub Actions Demo
 run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
 on:
-  push:  # That means it will be trigger on Push on any branch
+  push:
+    branches: [ "action-simple*" ]
   workflow_dispatch:  # That means this workflow can be triggered manually from GitHub UI
 jobs:
   Explore-GitHub-Actions:
